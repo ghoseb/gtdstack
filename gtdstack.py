@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 # GTD Stack
+# Copyright: Harshad Sharma
+# http://harshadsharma.com/
 
 import pickle 
 import sys
