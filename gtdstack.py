@@ -35,12 +35,16 @@ class GTDStack:
 		outfile.close()
 
 	def load(self):
-		infile = open("saved.data","r+")
-		temp = pickle.load(infile)
-		for task in self.stack:
-			temp.append(task)
-		self.stack  = temp
-		infile.close()
+		try:
+			infile = open("saved.data","r+")
+			temp = pickle.load(infile)
+			for task in self.stack:
+				temp.append(task)
+			self.stack  = temp
+			infile.close()
+		except:
+			print "Unable to load saved data... are you sure you used the 'save' command first?"
+
 
 def main():
 	stack = GTDStack()
