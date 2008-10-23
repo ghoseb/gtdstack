@@ -47,6 +47,17 @@ class GTDStack:
 		except:
 			print "Unable to load saved data... are you sure you used the 'save' command first?"
 
+help_text = """
+Commands:
+a <task> : add a new task
+c : current task
+n : get next task to work with
+l : list of tasks
+do <task number> : select a task from the list to do right now
+save : to save the current tasks on disk
+load : to load previously saved tasks from disk
+q : quit
+"""
 
 def main():
 	stack = GTDStack()
@@ -67,7 +78,7 @@ def main():
 						stack.addTask(current_task)
 						
 					current_task = task
-					print "Now working on: %s." % task
+					print "Now working on: %s" % task
 					
 				else:
 					print "Working on mystery task? (try h for help)"
@@ -78,7 +89,7 @@ def main():
 			elif cmd == "n":
 				task = stack.getNextTask()
 				
-				if task != None:
+				if (task):
 					print "Continuing work on: %s." % task
 				else:
 					print "Relax!"
@@ -88,12 +99,11 @@ def main():
 				print current_task
 				print "--------------------"
 				
-				if tasks != None and len(tasks) > 0:
+				if (tasks and (len(tasks) > 0)):
 					x = len(tasks)
 					
 					for task in tasks:
-						print x, task
-						x -= 1
+						print (x - tasks.index(task)), task
 						
 				else:
 					print "No pending tasks!"
@@ -101,7 +111,7 @@ def main():
 			elif cmd == "do":
 				stack.addTask(current_task)
 				current_task = stack.do(int(task))
-				print "Continuing work on: %s." % current_task
+				print "Continuing work on: %s" % current_task
 
 			elif cmd == "save":
 				stack.addTask(current_task)
@@ -114,16 +124,7 @@ def main():
 				sys.exit()
 				
 			else:
-				print """Commands:
-				a <task> : add a new task
-				c : current task
-				n : get next task to work with
-				l : list of tasks
-				do <task number> : select a task from the list to do right now
-				save : to save the current tasks on disk
-				load : to load previously saved tasks from disk
-				q : quit
-				"""
+				print help_text
 				
 		except KeyboardInterrupt:
 			print "Bye"
