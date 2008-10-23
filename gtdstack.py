@@ -87,10 +87,10 @@ def main():
 				print "Current Task: %s" % current_task
 				
 			elif cmd == "n":
-				task = stack.getNextTask()
+				current_task = stack.getNextTask()
 				
 				if (task):
-					print "Continuing work on: %s." % task
+					print "Continuing work on: %s" % current_task
 				else:
 					print "Relax!"
 					
@@ -109,9 +109,13 @@ def main():
 					print "No pending tasks!"
 
 			elif cmd == "do":
-				stack.addTask(current_task)
-				current_task = stack.do(int(task))
-				print "Continuing work on: %s" % current_task
+				try:
+					stack.addTask(current_task)
+					current_task = stack.do(int(task))
+					print "Continuing work on: %s" % current_task
+				except:
+					print "Please choose a task by its number :-)"
+
 
 			elif cmd == "save":
 				stack.addTask(current_task)
