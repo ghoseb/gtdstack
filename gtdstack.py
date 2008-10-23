@@ -55,8 +55,8 @@ def main():
 	while True:
 		try:
 			input = raw_input("> ")
-			cmd = input.split(" ")[0]
-			task = ' '.join(input.split(" ")[1:])
+                        split_cmd = input.split(" ")
+			cmd, task = split_cmd[0], " ".join(split_cmd[1:])
 
 			if cmd == "a":
 				task = task.strip()
